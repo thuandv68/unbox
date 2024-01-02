@@ -11,7 +11,7 @@ module.exports.TOKENS = {
 }
 
 module.exports.NETWORK = {
-  url: 'https://bsc-dataseed.binance.org/',
+  url: 'https://bsc-dataseed1.binance.org',
   options: {
     chainId: 56,
     gas: 2100000, 
