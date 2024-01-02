@@ -1,6 +1,7 @@
 
 const {TOKENS: {ExchangeNFT}} = require('../contracts')
 const { createContractWithProvider, createProvider, createContractWithWallet, createWallet } = require('../connectors')
+const { ethers } = require('ethers')
 
 
 module.exports.ExchangeNFT = class {
@@ -16,7 +17,7 @@ module.exports.ExchangeNFT = class {
 
   async unPack (nftContract, tokenId) {
     const tx = await this.contract.unPack(nftContract, tokenId, {
-      gasPrice: 3000000005n
+      gasPrice: ethers.parseUnits("2.5", 'gwei') + 5n
     })
     await tx.wait()
     return tx
