@@ -3,7 +3,7 @@ const { NETWORK } = require('./contracts')
 
 
 function createProvider() {
-  return new ethers.providers.JsonRpcProvider(NETWORK.url)
+  return new ethers.JsonRpcProvider(NETWORK.url, NETWORK.options.chainId)
 }
 
 function createContractWithWallet(contractAddress, abi, wallet) {
