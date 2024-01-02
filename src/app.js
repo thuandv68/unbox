@@ -28,7 +28,7 @@ async function main(params) {
   while (inx < total) {
     await (await exchangeNFT.unPack(TOKENS.KuniSaru.address, tokenIds[inx])).wait()
     await new Promise(r => setTimeout(r, 1000))
-    inx++
+    inx++;
     console.log('Unbox ' + inx + "/" + total);
   }
 }
