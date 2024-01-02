@@ -17,10 +17,11 @@ async function main(params) {
   const myAddress = saruBox.wallet.address
   console.log("UNPACK Wallet "+ myAddress);
   const total = await saruBox.balanceOf(myAddress)
+  console.log("total box: ", Number(total));
   if (!(await saruBox.isApprovedForAll(myAddress, TOKENS.ExchangeNFT.address))) {
     await (await saruBox.setApprovalForAll(TOKENS.ExchangeNFT.address)).wait()
   }
-  _.range(0, total.toNumber()).forEach(async index => {
+  _.range(0, Number(total)).forEach(async index => {
     const tokenId = await saruBox.tokenOfOwnerByIndex(myAddress, index)
     const exchangeNFT = new ExchangeNFT(privateKey)
     await (await exchangeNFT.unPack(TOKENS.KuniSaru.address, tokenId)).wait()
