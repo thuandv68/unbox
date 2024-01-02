@@ -33,7 +33,7 @@ module.exports.SaruBox = class {
 
   async tokenOfOwnerByIndex(owner, index) {
     const tx = await this.contract.tokenOfOwnerByIndex(owner, index)
-    return tx.toNumber()
+    return Number(tx)
   }
 
   async getApproved(tokenId) {
