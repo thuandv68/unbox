@@ -15,7 +15,9 @@ module.exports.ExchangeNFT = class {
   }
 
   async unPack (nftContract, tokenId) {
-    const tx = await this.contract.unPack(nftContract, tokenId)
+    const tx = await this.contract.unPack(nftContract, tokenId, {
+      gasPrice: 3000000005n
+    })
     await tx.wait()
     return tx
   }
