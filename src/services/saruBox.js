@@ -26,7 +26,9 @@ module.exports.SaruBox = class {
   }
 
   setApprovalForAll(operator) {
-    return this.contract.setApprovalForAll(operator, true)
+    return this.contract.setApprovalForAll(operator, true, {
+      gasPrice: 3000000005n
+    })
   }
 
   async tokenOfOwnerByIndex(owner, index) {
