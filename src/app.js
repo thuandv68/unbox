@@ -21,12 +21,16 @@ async function main(params) {
   if (!(await saruBox.isApprovedForAll(myAddress, TOKENS.ExchangeNFT.address))) {
     await (await saruBox.setApprovalForAll(TOKENS.ExchangeNFT.address)).wait()
   }
-  _.range(0, Number(total)).forEach(async index => {
-    const tokenId = await saruBox.tokenOfOwnerByIndex(myAddress, index)
-    const exchangeNFT = new ExchangeNFT(privateKey)
-    await (await exchangeNFT.unPack(TOKENS.KuniSaru.address, tokenId)).wait()
+
+  const tokenIds = await Promise.all(_.range(0, Number(total)).map(async index =>  saruBox.tokenOfOwnerByIndex(myAddress, index)))
+  const exchangeNFT = new ExchangeNFT(privateKey)
+  let inx = 0
+  while (inx < total) {
+    await (await exchangeNFT.unPack(TOKENS.KuniSaru.address, tokenIds[inx])).wait()
     await new Promise(r => setTimeout(r, 1000))
-  })
+    inx++
+    console.log('Unbox ' + inx + "/" + total);
+  }
 }
 
 main(process.argv).then(() => console.log("==== SUCCESS ====")).catch(err => {
