@@ -13,7 +13,6 @@ async function main(params) {
     console.error("Input privateKey")
     process.exit(1);
   }
-  console.log("pri", privateKey);
   const saruBox = new SaruBox(privateKey)
   const myAddress = saruBox.wallet.address
   console.log("UNPACK Wallet "+ myAddress);
